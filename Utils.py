@@ -1,5 +1,6 @@
 import datetime
 import logging
+import time
 
 
 def formatTime(seconds):
@@ -51,6 +52,34 @@ def processTime(func):
         # logger.debug(message)
         print(message)
         return result
+    return f
+
+
+def voidFuncTime(func):
+    """[計算程式運算時間]
+    利用裝飾器的形式，計算無回傳值函式的運算時間
+
+    Args:
+        func: 被計算運算時間的程式
+
+    Returns:
+        沒有回傳值
+    """
+
+    def f(*args):
+        """[承接 func 參數]
+        func 參數可能有0個到N個，用這個來承接參數，再傳給 func
+
+        Args:
+            *args: func 所需參數
+
+        Returns:
+            沒有回傳值
+        """
+        start = time.time()
+        func(*args)
+        print("@{:.10f}s taken for {}".format(time.time() - start, func.__name__))
+
     return f
 
 
