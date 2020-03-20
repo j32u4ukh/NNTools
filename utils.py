@@ -10,7 +10,10 @@ def formatTime(seconds):
     return "%d:%02d:%02d" % (h, m, s)
 
 
-def getLogger(_name, _level=logging.DEBUG, _format='[%(asctime)s] %(name)s: %(levelname)s: %(message)s'):
+def getLogger(_name, _level=logging.DEBUG, _format=None):
+    if _format is None:
+        _format = '[%(asctime)s] %(name)s: %(levelname)s: %(message)s'
+
     # logger.debug("debug")
     # logger.info("info")
     # logger.warning("warning")
